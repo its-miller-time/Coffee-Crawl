@@ -1,4 +1,4 @@
-// const coffeeShopsURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.8486615,-84.3755117&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyDPDR84ivlB4JbavuQ3fEqoq0iMLaa9FTc`
+// const coffeeShopsURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.8486615,-84.3755117&radius=1500&type=restaurant&keyword=cruise&key=APIKEY`
 
 // async function getCoffeeShops(){
 //     let coffeeShops = await fetch 
