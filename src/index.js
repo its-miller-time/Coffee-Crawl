@@ -1,33 +1,48 @@
-// const coffeeShopsURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=33.8486615,-84.3755117&radius=1500&type=restaurant&keyword=cruise&key=APIKEY`
+fourSquareUrl = "https://api.foursquare.com/v2/venues/search?client_id=ZTBN04P0C1HZICYQWPO4OO1ZXYB2PHMALYZPLKTIOHT34VUL&client_secret=CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD&v=20180323&v=20180323&ll=33.848747,-84.373383&intent=browse&radius=3200&query=coffee"
+const fourSquareData= 
+    //return location and name information
+    venue => {
+        return {  
+            name: `${venue.name}`,
+            latitude: `${venue.location.lat}`,
+            longitude: `${venue.location.lng}`,
+            address: `${venue.location.address}`, 
+            city: `${venue.location.city}`,
+            state: `${venue.location.state}`,
+            postalcode: `${venue.location.postalCode}`,
+            address: `${venue.location.address}`,
+            distance: `${venue.location.distance}`,
+        }};
+const undesiredResults = unwanted => {
+    if (unwanted.name !== "Starbucks" && unwanted.name !== "Allegro Coffee Company" && unwanted.name !== "Starbucks Coffee" && unwanted.name !== "Caribou Coffee" && unwanted.name !== "The Coffee Bean" && unwanted.name !== "Peet's Coffee" && unwanted.name !== "Dunkin Donuts" && unwanted.address !== "undefined")
+    {return unwanted.name};
+}
 
-// async function getCoffeeShops(){
-//     let coffeeShops = await fetch 
-// }
+async function fetchMyData(){
+    const fourSquare = await fetch(fourSquareUrl)
+    const jsonFourSquare = await fourSquare.json();
+    console.log(jsonFourSquare.response.venues)
+    const updatedFourSquare = jsonFourSquare.response.venues.map(fourSquareData).filter(undesiredResults)
+    console.log(updatedFourSquare)
+    const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
+    localStorage.setItem("venues", stringifiedFourSquareVenues);
+}
+fetchMyData();
 
-var request = {
-    location: '33.8486615,-84.3755117',
-    radius: 8047,
-    types: ['cafe']
-  };
 
-  var service = new google.maps.places.PlacesService(map);
 
-  service.nearbySearch(request, callback);
 
-  function callback(results, status) {
-    if(status == google.maps.places.PlacesServiceStatus.OK){
-      for (var i = 0; i < results.length; i++){
-        createMarker(results[i]);
-      }
-    }
-  }
+// const lats = coffeePlaces.forEach(venue => console.log(venue.latitude));
+// const longs = coffeePlaces.forEach(venue => console.log(venue.longitude));
 
-  function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-      map: map,
-      position: place.geometry.location
-    });
-  }
 
+// const metersToMiles = (meters) => meters/1609.344
+// console.log(metersToMiles(1000))
+
+
+const venues = JSON.parse(localStorage.getItem('venues'));
+
+const latLng = (venues) => venues.map(venue => latlng = venue.longitude + venue.latitide);
+
+console.log(latLng(venues))
 
