@@ -29,13 +29,8 @@ async function fetchMyData(){
 }
 fetchMyData();
 
-
-
-
 // const lats = coffeePlaces.forEach(venue => console.log(venue.latitude));
 // const longs = coffeePlaces.forEach(venue => console.log(venue.longitude));
-
-
 // const metersToMiles = (meters) => meters/1609.344
 // console.log(metersToMiles(1000))
 
@@ -45,4 +40,3 @@ const venues = JSON.parse(localStorage.getItem('venues'));
 const latLng = (venues) => venues.map(venue => latlng = venue.longitude + venue.latitide);
 
 console.log(latLng(venues))
-
