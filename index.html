@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <title>Document</title>
+    <!-- <script type="text/javascript">
+      window.onload = function() {
+        L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
+
+        var map = L.mapquest.map('map', {
+          center: [40.7128, -74.0059],
+          layers: L.mapquest.tileLayer('map'),
+          zoom: 13
+        });
+
+        L.mapquest.directions().route({
+          start: '255 Ottley Dr NE #105, Atlanta, GA 30324',
+          end: '255 Ottley Dr NE #105, Atlanta, GA 30324',
+          // end: '6640 Akers Mill Rd SE Atlanta, GA 30339',
+          waypoints: [
+            "33 Peachtree Pl Ste 9 Atlanta, GA 30309",
+            "1230 Peachtree St NE Atlanta, GA 30309",
+            "1000 Piedmont Ave NE Atlanta, GA 30309"
+          ],
+          optimizeWaypoints: true
+        });
+      }
+    </script> -->
+    <script type="text/javascript">
+      window.onload = function() {
+        L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
+
+        addDirections();
+
+        function addDirections() {
+          var directions = L.mapquest.directions();
+          directions.setLayerOptions({
+          startMarker: {
+            icon: 'flag',
+            iconOptions: {
+              size: 'sm',
+              primaryColor: '#1fc715',
+              secondaryColor: '#1fc715',
+              symbol: 'A'
+            }
+          },
+          endMarker: {
+            icon: 'circle',
+            iconOptions: {
+              size: 'sm',
+              primaryColor: '#e9304f',
+              secondaryColor: '#e9304f',
+              symbol: 'B'
+            }
+          },
+          routeRibbon: {
+            color: "#2aa6ce",
+            opacity: 1.0,
+            showTraffic: true
+          }
+        });
+          directions.route({
+            start: '33.7748,-84.2963',
+            // end: '790 Huff Rd NW, Atlanta, GA 30318',
+           waypoints: latLng(coffeePlaces).slice(0,3),
+          //  [
+          //   "33 Peachtree Pl Ste 9 Atlanta, GA 30309",
+          //   '790 Huff Rd NW, Atlanta, GA 30318',
+          //   "1230 Peachtree St NE Atlanta, GA 30309",
+          //   "1000 Piedmont Ave NE Atlanta, GA 30309"
+          // ],
+          	optimizeWaypoints: true,
+            options: {
+              enhancedNarrative: true
+            }
+          }, createMap);
+        }
+
+        function createMap(err, response) {
+
+          var map = L.mapquest.map('map', {
+            center: [0, 0],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 9
+          });
+
+          var directionsLayer = L.mapquest.directionsLayer({
+            directionsResponse: response
+          }).addTo(map);
+
+          var narrativeControl = L.mapquest.narrativeControl({
+            directionsResponse: response,
+            compactResults: true,
+            interactive: true
+          });
+
+          narrativeControl.setDirectionsLayer(directionsLayer);
+          narrativeControl.addTo(map);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map" style="width: 100%; height: 530px;"></div>
+
+    <button id = "find-me">Show my location</button><br/>
+    <p id = "status"></p>
+    <a id = "map-link" target="_blank"></a>
+
+    <script src="./scripts/foursquare.js"></script>
+</body>
+</html>
