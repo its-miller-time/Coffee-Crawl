@@ -31,7 +31,7 @@ window.onload = function() {
     }
   });
     directions.route({
-      start: '33.7748,-84.2963',
+      start: localStorage.getItem('userLocation'), //'33.7748,-84.2963',
       // end: '790 Huff Rd NW, Atlanta, GA 30318',
      waypoints: waypointsLatLng(),
     //  [
@@ -52,7 +52,7 @@ window.onload = function() {
     var map = L.mapquest.map('map', {
       center: [0, 0],
       layers: L.mapquest.tileLayer('map'),
-      zoom: 9
+      zoom: 20
     });
 
     var directionsLayer = L.mapquest.directionsLayer({
@@ -65,7 +65,21 @@ window.onload = function() {
       interactive: true
     });
 
+    // L.mapquest.control().addTo(map);
+    // L.mapquest.geocodingControl().addTo(map);
     narrativeControl.setDirectionsLayer(directionsLayer);
     narrativeControl.addTo(map);
   }
 }
+// const url = 
+//https://www.mapquestapi.com/search/v3/prediction?collection=%22address%22%2C%22category%22%2C%22poi%22&limit=10&q=coffee%20shops&key=g2egZCu69Ravnu4jtBeImYEArbV4GUZm
+
+// userQuery = prompt("Where are you starting your crawl?")
+// function searchAhead(userQuery){
+//   const key = "g2egZCu69Ravnu4jtBeImYEArbV4GUZm";
+//   const userLocation = ""
+//   return `https://www.mapquestapi.com/search/v3/prediction?collection=%22address%22%2C%22category%22%2C%22poi%22&limit=10&q=${userQuery}%20shops&key=${key}`
+// }
+// searchAhead(userQuery)
+
+// https://www.mapquestapi.com/search/v3/prediction?collection=%22address%22%2C%22category%22%2C%22poi%22&limit=10&q="coffee shops"%20shops&key=g2egZCu69Ravnu4jtBeImYEArbV4GUZm

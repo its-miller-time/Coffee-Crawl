@@ -1,12 +1,16 @@
-L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
+// L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
 var baseLayer = L.mapquest.tileLayer('dark');
 
 L.mapquest.geocoding().geocode(['New York, NY'], showMap);
+
+console.log('hello world')
 
 function showMap(err, data) {
   var map = createMap();
   map.addControl(L.mapquest.control());
   addLayerControl(map);
+  L.mapquest.control().addTo(map);
+  L.mapquest.geocodingControl().addTo(map);
 }
 
 function createMap() {
