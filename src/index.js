@@ -1,61 +1,92 @@
-//CREATE MAP
+
 window.onload = function() {
   L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
 
-  //GET USER CURRENT LOCATION
+let shopNum = prompt("How many shops would you like to visit?");
 
-
-//   const location = navigator.geolocation.getCurrentPosition(function(position) {
-//     return(position.coords.latitude, position.coords.longitude);
-//   });
-
-// console.log(location)
-
-
-function geoFindMe() {
-
-  const status = document.querySelector('#status');
-  const mapLink = document.querySelector('#map-link');
-
-  // let mapLink.href = '';
-  userLocation = '';
-  console.log(userLocation)
-
-  function success(position) {
-    const latitude  = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    userLocation = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-  }
-
-  function error() {
-    status.textContent = 'Unable to retrieve your location'; //ASK FOR ADDRESS INPUT
-  }
-
-  if (!navigator.geolocation) {
-    prompt(`We can't find you! Please enter a location`);
-  } else {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
-
+//async function fourSquareURLConstructor()
+async function fourSquareURLConstructor(locationResult) {
+	const baseURL = "https://api.foursquare.com/v2/venues/search?";
+	const clientID = "ZTBN04P0C1HZICYQWPO4OO1ZXYB2PHMALYZPLKTIOHT34VUL";
+	const clientSecret = "CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD";
+	const version = "20180323";
+	//const latLng = "33.7748,-84.2963";
+	//const latLng = await startLocation();
+	const latLng = locationResult;
+	console.log(latLng);
+	const intent = "browse";
+	const searchRadius = "3200";
+	const queryTopic = "coffee";
+	const categoryID = "4bf58dd8d48988d1e0931735";
+	return `${baseURL}client_id=${clientID}&client_secret=${clientSecret}&v=${version}&ll=${latLng}&intent=${intent}&radius=${searchRadius}&query=${queryTopic}`;
 }
-geoFindMe()
 
-  // var currentLocation = navigator.geolocation.getCurrentPosition(position => position.coords.latitude, position.coords.longitude);
-  // console.log(currentLocation());
+// let fourSquareURL = fourSquareURLConstructor();
 
-  //GET USER DEFINED START
-  var map = L.mapquest.map('map', {
-    center: [37.7749, -122.4194],
-    layers: L.mapquest.tileLayer('map'),
-    zoom: 12
-  });
-  L.mapquest.control().addTo(map);
-  L.mapquest.geocodingControl().addTo(map);
+const fourSquareData = venue => {
+	return {
+		name: `${venue.name}`,
+		latitude: `${venue.location.lat}`,
+		longitude: `${venue.location.lng}`,
+		address: `${venue.location.address}`,
+		city: `${venue.location.city}`,
+		state: `${venue.location.state}`,
+		postalcode: `${venue.location.postalCode}`,
+		address: `${venue.location.address}`,
+		distance: `${venue.location.distance}`,
+	};
+};
+
+const undesiredResults = unwanted => {
+	if (
+		unwanted.name !== "Starbucks" &&
+		unwanted.name !== "Allegro Coffee Company" &&
+		unwanted.name !== "Starbucks Coffee" &&
+		unwanted.name !== "Caribou Coffee" &&
+		unwanted.name !== "The Coffee Bean" &&
+		unwanted.name !== "Peet's Coffee" &&
+		unwanted.name !== "Dunkin Donuts" &&
+		unwanted.address !== "undefined"
+	) {
+		return unwanted.name;
+	}
+};
+
+async function fetchMyData() {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+		const latitude = position.coords.latitude;
+		const longitude = position.coords.longitude;
+        var locationResult = `${latitude},${longitude}`;
+        localStorage.setItem('userLocation',locationResult)
+        addDirections(locationResult);
+        console.log(latitude);
+        console.log(longitude);
+        const fourSquareURL = await fourSquareURLConstructor(locationResult);
+        console.log(fourSquareURL);
+        const fourSquare = await fetch(fourSquareURL);
+        const jsonFourSquare = await fourSquare.json();
+        // console.log(jsonFourSquare.response.venues)
+        const updatedFourSquare = jsonFourSquare.response.venues
+            .map(fourSquareData)
+            .filter(undesiredResults);
+        // console.log(updatedFourSquare)
+        const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
+        localStorage.setItem("venues", stringifiedFourSquareVenues);
+    })
+}
+fetchMyData();
+
+function waypointsLatLng() {
+	const coffeePlaces = JSON.parse(localStorage.getItem("venues"));
+	return coffeePlaces
+		.map(venue => (latlng = `${venue.latitude},${venue.longitude}`))
+		.slice(0, shopNum - 1);
+}
 
 
-  addDirections();
-  //GET DIRECTIONS
-  function addDirections() {
+  
+
+  function addDirections(userLocation) {
     var directions = L.mapquest.directions();
     directions.setLayerOptions({
     startMarker: {
@@ -82,18 +113,18 @@ geoFindMe()
       showTraffic: true
     }
   });
+  console.log("LOCAL STORAGE: ",userLocation)
     directions.route({
-      start: '33.7748,-84.2963',
+      start: userLocation,//localStorage.getItem('userLocation'),
       // end: '790 Huff Rd NW, Atlanta, GA 30318',
-     waypoints: venuesLatLng(), //WILL FILL THIS WITH USER INFO
-
+     waypoints: waypointsLatLng().slice(0,3),
         optimizeWaypoints: true,
       options: {
-        enhancedNarrative: false,
+        enhancedNarrative: true
       }
     }, createMap);
   }
-  //LOAD MAP ONTO PAGE
+
   function createMap(err, response) {
 
     var map = L.mapquest.map('map', {
@@ -116,78 +147,3 @@ geoFindMe()
     narrativeControl.addTo(map);
   }
 }
-
-//FOURSQUARE DATA
-fourSquareUrl = "https://api.foursquare.com/v2/venues/search?client_id=ZTBN04P0C1HZICYQWPO4OO1ZXYB2PHMALYZPLKTIOHT34VUL&client_secret=CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD&v=20180323&v=20180323&ll=33.7748,-84.2963&intent=browse&radius=3200&query=coffee"
-const fourSquareData= 
-    venue => {
-        return {  
-            name: `${venue.name}`,
-            latitude: `${venue.location.lat}`,
-            longitude: `${venue.location.lng}`,
-            address: `${venue.location.address}`, 
-            city: `${venue.location.city}`,
-            state: `${venue.location.state}`,
-            postalcode: `${venue.location.postalCode}`,
-            address: `${venue.location.address}`,
-            distance: `${venue.location.distance}`,
-        }};
-const undesiredResults = unwanted => {
-    if (unwanted.name !== "Starbucks" && unwanted.name !== "Allegro Coffee Company" && unwanted.name !== "Starbucks Coffee" && unwanted.name !== "Caribou Coffee" && unwanted.name !== "The Coffee Bean" && unwanted.name !== "Peet's Coffee" && unwanted.name !== "Dunkin Donuts" && unwanted.address !== "undefined")
-    {return unwanted.name};
-}
-
-async function fetchMyData(){
-    const fourSquare = await fetch(fourSquareUrl)
-    const jsonFourSquare = await fourSquare.json();
-    console.log(jsonFourSquare.response.venues)
-    const updatedFourSquare = jsonFourSquare.response.venues.map(fourSquareData).filter(undesiredResults)
-    console.log(updatedFourSquare)
-    const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
-    localStorage.setItem("venues", stringifiedFourSquareVenues);
-}
-fetchMyData();
-
-
-function venuesLatLng(shopChoice){
-  const parsedVenues = JSON.parse(localStorage.getItem('venues'));
-  return parsedVenues.map(venue => latlng = `${venue.latitude},${venue.longitude}`).slice(0,shopChoice);
-}
-
-
-
-
-
-
-
-// function geoFindMe() {
-
-//     const status = document.querySelector('#status');
-//     const mapLink = document.querySelector('#map-link');
-  
-//     mapLink.href = '';
-//     mapLink.textContent = '';
-  
-//     function success(position) {
-//       const latitude  = position.coords.latitude;
-//       const longitude = position.coords.longitude;
-  
-//       status.textContent = '';
-//       mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-//       mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-//     }
-  
-//     function error() {
-//       status.textContent = 'Unable to retrieve your location';
-//     }
-  
-//     if (!navigator.geolocation) {
-//       status.textContent = 'Geolocation is not supported by your browser';
-//     } else {
-//       status.textContent = 'Locating…';
-//       navigator.geolocation.getCurrentPosition(success, error);
-//     }
-  
-//   }
-  
-//   document.querySelector('#find-me').addEventListener('click', geoFindMe);
