@@ -1,22 +1,7 @@
 L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
 window.addEventListener('DOMContentLoaded', () => {
-	let shopNum = prompt("How many shops would you like to visit?");
-
-    //async function fourSquareURLConstructor()
-    async function fourSquareURLConstructor(locationResult) {
-        const baseURL = "https://api.foursquare.com/v2/venues/search?";
-        const clientID = "ZTBN04P0C1HZICYQWPO4OO1ZXYB2PHMALYZPLKTIOHT34VUL";
-        const clientSecret = "CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD";
-        const version = "20180323";
-        const latLng = locationResult;
-        console.log(latLng);
-        const intent = "browse";
-        const searchRadius = "3200";
-        const queryTopic = "coffee";
-        const categoryID = "4bf58dd8d48988d1e0931735";
-        return `${baseURL}client_id=${clientID}&client_secret=${clientSecret}&v=${version}&ll=${latLng}&intent=${intent}&radius=${searchRadius}&query=${queryTopic}`;
-    }
-
+  let shopNum = prompt("How many shops would you like to visit?");
+  
     const fourSquareData = venue => {
         return {
             name: `${venue.name}`,
@@ -46,36 +31,28 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    async function fetchMyData() {
-        navigator.geolocation.getCurrentPosition(async (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            var locationResult = `${latitude},${longitude}`;
-            localStorage.setItem('userLocation',locationResult)
-            const fourSquareURL = await fourSquareURLConstructor(locationResult);
-            console.log(fourSquareURL);
-            const fourSquare = await fetch(fourSquareURL);
-            const jsonFourSquare = await fourSquare.json();
-            const updatedFourSquare = jsonFourSquare.response.venues
-                .map(fourSquareData)
-                .filter(undesiredResults);
-            const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
-            localStorage.setItem("venues", stringifiedFourSquareVenues);
-            addDirections(locationResult)
-        })
-    }
-    
+    async function fourSquareURLConstructor(locationResult) {
+      const baseURL = "https://api.foursquare.com/v2/venues/search?";
+      const clientID = "ZTBN04P0C1HZICYQWPO4OO1ZXYB2PHMALYZPLKTIOHT34VUL";
+      const clientSecret = "CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD";
+      const version = "20180323";
+      const latLng = locationResult;
+      console.log(latLng);
+      const intent = "browse";
+      const searchRadius = "10000";
+      const queryTopic = "coffee";
+      const categoryID = "4bf58dd8d48988d1e0931735";
+      return `${baseURL}client_id=${clientID}&client_secret=${clientSecret}&v=${version}&ll=${latLng}&intent=${intent}&radius=${searchRadius}&query=${queryTopic}`;
+  }
 
-    function waypointsLatLng() {
+    function waypointsLocation() {
         const coffeePlaces = JSON.parse(localStorage.getItem("venues"));
         console.log(coffeePlaces);
         return coffeePlaces
-            .map(venue => (latlng = `${venue.latitude},${venue.longitude}`))
-            .slice(0, shopNum - 1);
+            .map(venue => (address = `${venue.address},${venue.city},${venue.state} ${venue.postalcode}`))
+            .slice(0, shopNum);
     }
 
-    // addDirections();
-  
     function addDirections(locationResult) {
       var directions = L.mapquest.directions();
       directions.setLayerOptions({
@@ -105,10 +82,11 @@ window.addEventListener('DOMContentLoaded', () => {
     });
       directions.route({
         start: locationResult,
-        waypoints: waypointsLatLng(),
+        end:locationResult,
+        waypoints: waypointsLocation(),
         optimizeWaypoints: true,
         options: {
-        enhancedNarrative: true
+        enhancedNarrative: true,
         }
       }, createMap);
     }
@@ -128,14 +106,45 @@ window.addEventListener('DOMContentLoaded', () => {
       var narrativeControl = L.mapquest.narrativeControl({
         directionsResponse: response,
         compactResults: true,
-        interactive: true
+        interactive: true,
       });
   
       narrativeControl.setDirectionsLayer(directionsLayer);
       narrativeControl.addTo(map);
     }
 
+    async function weather(latitude,longitude){
+      let atlWeatherAPI = `http://my-little-cors-proxy.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=a373f4ca9633876c822db955b3ed301e`
+      console.log(atlWeatherAPI);
+      userWeather = await fetch(atlWeatherAPI);
+      jsonUserWeather = await  userWeather.json();
+      const currentConditions = jsonUserWeather.weather[0].main
+      const userTemp = jsonUserWeather.main.temp
+    };
+
+    //Master Function
+    async function fetchMyData() {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          const city = position;
+          console.log(position)
+          var locationResult = `${latitude},${longitude}`;
+          localStorage.setItem('userLocation',locationResult)
+          const fourSquareURL = await fourSquareURLConstructor(locationResult);
+          console.log(fourSquareURL);
+          const fourSquare = await fetch(fourSquareURL);
+          const jsonFourSquare = await fourSquare.json();
+          const updatedFourSquare = jsonFourSquare.response.venues
+              .map(fourSquareData)
+              .filter(undesiredResults);
+          const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
+          localStorage.setItem("venues", stringifiedFourSquareVenues);
+          addDirections(locationResult)
+          weather(latitude,longitude)
+      })
+  }
+
     fetchMyData();
 
   });
-// });
