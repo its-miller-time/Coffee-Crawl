@@ -1,0 +1,58 @@
+:root {
+    box-sizing: border-box;
+}
+
+*,*::before, *::after{
+    box-sizing:inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header {
+    display: inherit;
+    justify-content: center;
+    border: 1px solid black;
+    height: 8vh;
+    width: 100%;
+}
+
+main {
+    display: inherit;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid black;
+    height: 80vh;
+    width: 100%;
+}
+
+footer {
+    display: inherit;
+    justify-content: center;
+    border: 1px solid black;
+    height: 8vh;
+    width: 100%;
+}
+
+#map {
+    display: inherit;
+    justify-content: center;
+    border: 1px solid black;
+    height: 80vh;
+    width: 100%;
+}
+
+
+
+
+/* #coffeeShopList {
+    display: inherit;
+    justify-content: center;
+    border: 1px solid black;
+    height: auto;
+    width: 100%;
+} */
+
