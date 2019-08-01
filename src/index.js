@@ -18,10 +18,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const undesiredResults = unwanted => {
         if (
-            unwanted.name !== "Starbucks" &&
+            !unwanted.name.includes("Starbuck") &&
             unwanted.name !== "Allegro Coffee Company" &&
-            unwanted.name !== "Starbucks Coffee" &&
-            unwanted.name !== "Caribou Coffee" &&
+            // unwanted.name !== "Starbucks Coffee" &&
+            !unwanted.name.includes("Caribou Coffee") &&
             unwanted.name !== "The Coffee Bean" &&
             unwanted.name !== "Peet's Coffee" &&
             unwanted.name !== "Dunkin Donuts" &&
@@ -30,6 +30,37 @@ window.addEventListener('DOMContentLoaded', () => {
             return unwanted.name;
         }
     };
+
+    
+    // const weatherBox = document.getElementsByName("");
+    
+
+
+function getRadius(){    
+  const milesToMeters = (miles) => (miles * (1609.34))
+  let radios = document.getElementsByName('radius');
+      for (var i = 0, length = radios.length; i < length; i++){
+        if (radios[i].checked){
+          return(milesToMeters(radios[i].value))
+        }
+      break;
+      };
+    }
+
+    const directionsContainer = document.querySelector(".weatherBox")
+
+    function getVenuesList(){
+      const venuesDiv = document.querySelector(".venuesDiv");
+      let locIndex = 0
+      const venues = JSON.parse(localStorage.getItem("venues"));
+      while(locIndex < shopNum){
+        const el = document.createElement("li")
+        el.innerHTML = `<strong>${venues[locIndex].name}</strong> <br> ${venues[locIndex].address}, ${venues[locIndex].city}, ${venues[locIndex].state} ${venues[locIndex].postalcode} <hr>` 
+        document.querySelector('.results').appendChild(el)
+        locIndex++
+      }
+    }
+
 
     async function fourSquareURLConstructor(locationResult) {
       const baseURL = "https://api.foursquare.com/v2/venues/search?";
@@ -110,16 +141,20 @@ window.addEventListener('DOMContentLoaded', () => {
       });
   
       narrativeControl.setDirectionsLayer(directionsLayer);
-      narrativeControl.addTo(map);
+      // narrativeControl.addTo(map);
     }
 
     async function weather(latitude,longitude){
       let atlWeatherAPI = `http://my-little-cors-proxy.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=a373f4ca9633876c822db955b3ed301e`
-      console.log(atlWeatherAPI);
       userWeather = await fetch(atlWeatherAPI);
       jsonUserWeather = await  userWeather.json();
       const currentConditions = jsonUserWeather.weather[0].main
+      console.log(currentConditions)
       const userTemp = jsonUserWeather.main.temp
+      console.log(userTemp)
+      const weatherDiv = document.querySelector(".weather")
+      weatherDiv.innerHTML=`<p>${currentConditions}<br>${userTemp}</p>`
+      
     };
 
     //Master Function
@@ -142,9 +177,9 @@ window.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem("venues", stringifiedFourSquareVenues);
           addDirections(locationResult)
           weather(latitude,longitude)
+          getVenuesList()
       })
   }
-
     fetchMyData();
 
   });
