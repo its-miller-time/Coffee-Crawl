@@ -31,7 +31,7 @@ window.onload = function() {
     }
   });
     directions.route({
-      start: '33.7748,-84.2963',
+      start: '33.7748,-84.2963', // await getUserLocation()
       // end: '790 Huff Rd NW, Atlanta, GA 30318',
      waypoints: waypointsLatLng(),
     //  [
