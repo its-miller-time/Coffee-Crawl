@@ -36,19 +36,34 @@ window.addEventListener('DOMContentLoaded', () => {
     
 
 
-function getRadius(){    
-  const milesToMeters = (miles) => (miles * (1609.34))
-  let radios = document.getElementsByName('radius');
-      for (var i = 0, length = radios.length; i < length; i++){
-        if (radios[i].checked){
-          return(milesToMeters(radios[i].value))
-        }
-      break;
-      };
-    }
+// function getRadius(){    
+//   const milesToMeters = (miles) => (miles * (1609.34))
+//   let radios = document.getElementsByName('radius');
+//       for (var i = 0, length = radios.length; i < length; i++){
+//         if (radios[i].checked){
+//           return(milesToMeters(radios[i].value))
+//         }
+//       break;
+//       };
+//     }
 
-    const directionsContainer = document.querySelector(".weatherBox")
 
+    //
+    function selectWeather(){
+      imgSrc = ""
+      switch(weatherCondition){
+        case'cloudy':
+          imgSrc = "../assets/cloudy.gif";
+        case'sunny':
+          imgSrc = "../assets/sunny.gif";
+        case'windy':
+          imgSrc = "../assets/windy.gif";
+        case'rainh':
+          imgSrc = "../assets/rainy.gif";
+      }
+    };
+
+    //Creating and loading the list of venues the user will visit
     function getVenuesList(){
       const venuesDiv = document.querySelector(".venuesDiv");
       let locIndex = 0
@@ -147,14 +162,19 @@ function getRadius(){
     async function weather(latitude,longitude){
       let atlWeatherAPI = `http://my-little-cors-proxy.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=a373f4ca9633876c822db955b3ed301e`
       userWeather = await fetch(atlWeatherAPI);
-      jsonUserWeather = await  userWeather.json();
-      const currentConditions = jsonUserWeather.weather[0].main
-      console.log(currentConditions)
-      const userTemp = jsonUserWeather.main.temp
-      console.log(userTemp)
-      const weatherDiv = document.querySelector(".weather")
-      weatherDiv.innerHTML=`<p>${currentConditions}<br>${userTemp}</p>`
-      
+      jsonUserWeather = await userWeather.json();
+      let weatherIconUrl = `http://openweathermap.org/img/wn/${jsonUserWeather.weather[0].icon}@2x.png`
+      console.log(weatherIconUrl)
+      const currentConditions = jsonUserWeather.weather[0].main;
+      const userTemp = jsonUserWeather.main.temp;
+      // const weatherID = ;
+      const weatherDiv = document.querySelector(".weather");
+      weatherDiv.innerHTML=
+        `
+        <p>${currentConditions}<br>${userTemp}</p>
+        <img src = ${weatherIconUrl}>
+        `
+
     };
 
     //Master Function
@@ -164,7 +184,7 @@ function getRadius(){
           const longitude = position.coords.longitude;
           const city = position;
           console.log(position)
-          var locationResult = `${latitude},${longitude}`;
+          var locationResult =  `${latitude},${longitude}`; //33.943516, -83.399084
           localStorage.setItem('userLocation',locationResult)
           const fourSquareURL = await fourSquareURLConstructor(locationResult);
           console.log(fourSquareURL);
