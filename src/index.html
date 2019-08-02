@@ -14,24 +14,36 @@
 </head>
 
 <body>
+    <div class="weatherJacket">
+        <h6>WEATHER</h6>
+        <div class="weather hidden">
+        </div>
+    </div>
+    <header id="header">
+        <div class="topR">
+            <div class="logo">COFFEE<br>CRAWL</div>
+        </div>
+    </header>
+    <div class="mainPage">
+        <div id="map"></div>
+        <div class="resultsPage">
+            <ul class="results"></ul>
+        </div>
+        <!-- <div id="directions"></div> -->
+    </div>
+    <footer>
+        <div class="aboutButton">About</div>
+    </footer>
+
+    <script src="index.js"></script>
+  <div id="map" style="width: 100%; height: 530px;"></div>
+</head>
+
+<body>
     <header>
         <div class="topR">
             <div class="logo">COFFEE<br>CRAWL</div>
         </div>
-        <div class="radios">
-            <input type="radio" name="radius" value="1 mile" checked>1 mi</input>
-            <input type="radio" name="radius" value="3">3 mi</input>
-            <input type="radio" name="radius" value="5">5 mi</input>
-            <input type="radio" name="radius" value="10">10 mi</input>
-        </div>
-        <br />
-        <div class="radios">
-            <input type="radio" name="cafeNum" value="3" checked>3 cafes</input>
-            <input type="radio" name="cafeNum" value="5">5 cafes</input>
-            <input type="radio" name="cafeNum" value="7">7 cafes</input>
-            <input type="radio" name="cafeNum" value="9">9 cafes</input>
-        </div>
-
         <div class="weather"></div>
     </header>
     <div class="mainPage">

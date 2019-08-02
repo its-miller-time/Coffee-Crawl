@@ -14,12 +14,126 @@ body {
 
 header {
     display: inherit;
-    /* justify-content: center; */
-    border: solid #008000 2px;
-    height: auto;
+    position: fixed;
+    z-index:2;
+    top: 0;
+    background-color: palegreen;
+}
+p{
+    font-size: 20px;
+}
+    .topR{
+        border: solid black 1px;
+        font-size: 4vw;
+        height: auto;
+        text-align: center;
+    }
+    /* .weather h6{
+        font-size: 2vw;
+    } */
+    .weatherJacket{
+        background-color:rgba(255,255,150,.6);
+        position: fixed;
+        top: 10vw;
+        right: 0;
+        z-index: 5;
+        transform: rotate(-90deg);
+        /* transform: translate(50%); */
+        height:auto;
+        text-align: center;
+        font-size: 4vw;
+        margin-top: -10%;
+    }
+    .weather p{
+        transform: rotate(90deg);
+        font-size: 4.5vw;
+        padding: 0;
+        margin: 0;
+        /* text-align: center; */
+        /* display: inline-block; */
+    }
+        /* border: solid yellow 1px; */
+        /* height: auto;
+        width: auto;
+        position: fixed;
+        right: 5px;
+        top: 0;
+        z-index: 5;
+        background-color: yellow;
+        transform: rotate(90deg) translate(50%);
+        transform: translate(90%)
+    }
+    .weather:hover{
+        right: 0;
+        transform: translate(0%);
+    }
+    h6:hover{
+        font-display: none;
+    }
+    .weather img, .weather p{
+        /* transform: rotate(-90deg) */
+    */
+.mainPage{
+    display: flex;
+    /* display:none; */
+    /* flex-wrap: wrap; */
+    border: solid red 1px;
+    height: vh;
     width: 100vw;
-    /* margin: 10px; */
-    flex-wrap: wrap;
+}    
+    #map {
+        display: inherit;
+        justify-content: center;
+        border: 1px solid purple;
+        height: 40vh;
+        width: 100vw;
+        position: fixed;
+        z-index: 0;
+    }
+    .resultsPage{
+        border: solid purple 2px;
+        width: 100vw;
+        height: auto;
+        display: flex;
+        /* display:none; */
+        justify-content: center;
+        padding: 10px;
+        flex-wrap: wrap;
+        /* z-index: 1; */
+        position: relative;
+        top: 40vh;
+        background-color: white;
+    }
+        li{
+            display: block;
+        }
+    
+    #directions{
+        border: 6px green solid;
+        width: 100vw;
+        height: 100px;
+    }
+footer {
+    /* display: inherit; */
+    border: 1px solid green;
+    height: 7vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+}
+    .aboutButton{
+        width: 12vw;
+        height: 4vh;
+        border: black 1px solid;
+        text-align: center;
+    }
+    justify-content: center;
+    border: 1px solid black;
+    height: 8vh;
+    width: 100%;
 }
 p{
     text-size: 20px;

@@ -1,7 +1,21 @@
 L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
 window.addEventListener('DOMContentLoaded', () => {
-  let shopNum = prompt("How many shops would you like to visit?");
-  
+	let shopNum = prompt("How many shops would you like to visit?");
+
+    //async function fourSquareURLConstructor()
+    async function fourSquareURLConstructor(locationResult) {
+        const baseURL = "https://api.foursquare.com/v2/venues/search?";
+        const clientID = "ZTBN04P0C1HZICYQWPO4OO1ZXYB2PHMALYZPLKTIOHT34VUL";
+        const clientSecret = "CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD";
+        const version = "20180323";
+        const latLng = locationResult;
+        console.log(latLng);
+        const intent = "browse";
+        const searchRadius = "3200";
+        const queryTopic = "coffee";
+        const categoryID = "4bf58dd8d48988d1e0931735";
+        return `${baseURL}client_id=${clientID}&client_secret=${clientSecret}&v=${version}&ll=${latLng}&intent=${intent}&radius=${searchRadius}&query=${queryTopic}`;
+    }
     const fourSquareData = venue => {
         return {
             name: `${venue.name}`,
@@ -98,7 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
             .map(venue => (address = `${venue.address},${venue.city},${venue.state} ${venue.postalcode}`))
             .slice(0, shopNum);
     }
-
+    // addDirections();
     function addDirections(locationResult) {
       var directions = L.mapquest.directions();
       directions.setLayerOptions({
@@ -133,6 +147,10 @@ window.addEventListener('DOMContentLoaded', () => {
         optimizeWaypoints: true,
         options: {
         enhancedNarrative: true,
+        waypoints: waypointsLatLng(),
+        optimizeWaypoints: true,
+        options: {
+        enhancedNarrative: true
         }
       }, createMap);
     }
@@ -167,14 +185,21 @@ window.addEventListener('DOMContentLoaded', () => {
       console.log(weatherIconUrl)
       const currentConditions = jsonUserWeather.weather[0].main;
       const userTemp = jsonUserWeather.main.temp;
-      // const weatherID = ;
       const weatherDiv = document.querySelector(".weather");
+      weatherDiv.style.display = "none";
+      const weatherJacket = document.querySelector(".weatherJacket")
+      weatherJacket.onmouseover = function showWeather() {
+        if (weatherDiv.style.display === "none"){
+          weatherDiv.style.display = "block";
+        }
+        else {weatherDiv.style.display = "none"}
+      }
       weatherDiv.innerHTML=
         `
         <p>${currentConditions}<br>${userTemp}</p>
         <img src = ${weatherIconUrl}>
         `
-
+        return jsonUserWeather;
     };
 
     //Master Function
@@ -196,10 +221,9 @@ window.addEventListener('DOMContentLoaded', () => {
           const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
           localStorage.setItem("venues", stringifiedFourSquareVenues);
           addDirections(locationResult)
-          weather(latitude,longitude)
+          await weather(latitude,longitude)
           getVenuesList()
       })
   }
     fetchMyData();
-
   });
