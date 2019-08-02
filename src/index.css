@@ -21,8 +21,59 @@ header {
     /* margin: 10px; */
     flex-wrap: wrap;
 }
+
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	/* -moz-transition: opacity 400ms ease-in; */
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+	width: 80%;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #E0DFE5;
+}
+
+.modalDialog H2 {
+	text-align: center;
+}
+
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #5A9258; }
+
+
 p{
-    text-size: 20px;
+    font-size: 20px;
 }
     .topR{
         border: solid black 1px;

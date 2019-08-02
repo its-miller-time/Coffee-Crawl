@@ -63,6 +63,8 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+
+
     //Creating and loading the list of venues the user will visit
     function getVenuesList(){
       const venuesDiv = document.querySelector(".venuesDiv");
@@ -184,7 +186,7 @@ window.addEventListener('DOMContentLoaded', () => {
           const longitude = position.coords.longitude;
           const city = position;
           console.log(position)
-          var locationResult =  `${latitude},${longitude}`; //33.943516, -83.399084
+          var locationResult =  `${latitude},${longitude}`; //47.595940, -122.325633
           localStorage.setItem('userLocation',locationResult)
           const fourSquareURL = await fourSquareURLConstructor(locationResult);
           console.log(fourSquareURL);
