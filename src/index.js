@@ -1,5 +1,6 @@
 L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
 window.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
   let shopNum = prompt("How many shops would you like to visit?");
   
     const fourSquareData = venue => {
@@ -101,6 +102,84 @@ window.addEventListener('DOMContentLoaded', () => {
             .slice(0, shopNum);
     }
 
+=======
+	let shopNum = prompt("How many shops would you like to visit?");
+
+    //async function fourSquareURLConstructor()
+    async function fourSquareURLConstructor(locationResult) {
+        const baseURL = "https://api.foursquare.com/v2/venues/search?";
+        const clientID = "ZTBN04P0C1HZICYQWPO4OO1ZXYB2PHMALYZPLKTIOHT34VUL";
+        const clientSecret = "CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD";
+        const version = "20180323";
+        const latLng = locationResult;
+        console.log(latLng);
+        const intent = "browse";
+        const searchRadius = "3200";
+        const queryTopic = "coffee";
+        const categoryID = "4bf58dd8d48988d1e0931735";
+        return `${baseURL}client_id=${clientID}&client_secret=${clientSecret}&v=${version}&ll=${latLng}&intent=${intent}&radius=${searchRadius}&query=${queryTopic}`;
+    }
+
+    const fourSquareData = venue => {
+        return {
+            name: `${venue.name}`,
+            latitude: `${venue.location.lat}`,
+            longitude: `${venue.location.lng}`,
+            address: `${venue.location.address}`,
+            city: `${venue.location.city}`,
+            state: `${venue.location.state}`,
+            postalcode: `${venue.location.postalCode}`,
+            address: `${venue.location.address}`,
+            distance: `${venue.location.distance}`,
+        };
+    };
+
+    const undesiredResults = unwanted => {
+        if (
+            unwanted.name !== "Starbucks" &&
+            unwanted.name !== "Allegro Coffee Company" &&
+            unwanted.name !== "Starbucks Coffee" &&
+            unwanted.name !== "Caribou Coffee" &&
+            unwanted.name !== "The Coffee Bean" &&
+            unwanted.name !== "Peet's Coffee" &&
+            unwanted.name !== "Dunkin Donuts" &&
+            unwanted.address !== "undefined"
+        ) {
+            return unwanted.name;
+        }
+    };
+
+    async function fetchMyData() {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            var locationResult = `${latitude},${longitude}`;
+            localStorage.setItem('userLocation',locationResult)
+            const fourSquareURL = await fourSquareURLConstructor(locationResult);
+            console.log(fourSquareURL);
+            const fourSquare = await fetch(fourSquareURL);
+            const jsonFourSquare = await fourSquare.json();
+            const updatedFourSquare = jsonFourSquare.response.venues
+                .map(fourSquareData)
+                .filter(undesiredResults);
+            const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
+            localStorage.setItem("venues", stringifiedFourSquareVenues);
+            addDirections(locationResult)
+        })
+    }
+    
+
+    function waypointsLatLng() {
+        const coffeePlaces = JSON.parse(localStorage.getItem("venues"));
+        console.log(coffeePlaces);
+        return coffeePlaces
+            .map(venue => (latlng = `${venue.latitude},${venue.longitude}`))
+            .slice(0, shopNum - 1);
+    }
+
+    // addDirections();
+  
+>>>>>>> master
     function addDirections(locationResult) {
       var directions = L.mapquest.directions();
       directions.setLayerOptions({
@@ -130,11 +209,18 @@ window.addEventListener('DOMContentLoaded', () => {
     });
       directions.route({
         start: locationResult,
+<<<<<<< HEAD
         end:locationResult,
         waypoints: waypointsLocation(),
         optimizeWaypoints: true,
         options: {
         enhancedNarrative: true,
+=======
+        waypoints: waypointsLatLng(),
+        optimizeWaypoints: true,
+        options: {
+        enhancedNarrative: true
+>>>>>>> master
         }
       }, createMap);
     }
@@ -154,6 +240,7 @@ window.addEventListener('DOMContentLoaded', () => {
       var narrativeControl = L.mapquest.narrativeControl({
         directionsResponse: response,
         compactResults: true,
+<<<<<<< HEAD
         interactive: true,
       });
   
@@ -211,3 +298,16 @@ window.addEventListener('DOMContentLoaded', () => {
   }
     fetchMyData();
   });
+=======
+        interactive: true
+      });
+  
+      narrativeControl.setDirectionsLayer(directionsLayer);
+      narrativeControl.addTo(map);
+    }
+
+    fetchMyData();
+
+  });
+// });
+>>>>>>> master
