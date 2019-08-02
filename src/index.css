@@ -14,13 +14,6 @@ body {
 
 header {
     display: inherit;
-<<<<<<< HEAD
-    /* justify-content: center; */
-    border: solid #008000 2px;
-    height: auto;
-    width: 100vw;
-    /* margin: 10px; */
-    flex-wrap: wrap;
     position: fixed;
     z-index:2;
     top: 0;
@@ -137,13 +130,67 @@ footer {
         border: black 1px solid;
         text-align: center;
     }
-
-=======
     justify-content: center;
     border: 1px solid black;
     height: 8vh;
     width: 100%;
 }
+p{
+    text-size: 20px;
+}
+    .topR{
+        border: solid black 1px;
+        font-size: 20px;
+        height: 14vh;
+        text-align: center;
+    }
+    .radios{
+        border: solid orangered 1px;
+        height: 14vh;
+        width: 70vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .weather{
+        border: solid yellow 1px;
+        height: auto;
+        width: 100px;
+    }
+.mainPage{
+    display: flex;
+    /* display:none; */
+    flex-wrap: wrap;
+    border: solid red 1px;
+    height: vh;
+    width: 100vw;
+}    
+    #map {
+        display: inherit;
+        justify-content: center;
+        border: 1px solid purple;
+        height: 40vh;
+        width: 100vw;
+    }
+    .resultsPage{
+        border: solid purple 2px;
+        width: 100vw;
+        height: auto;
+        display: flex;
+        /* display:none; */
+        justify-content: center;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+        li{
+            display: block;
+        }
+    
+    #directions{
+        border: 6px green solid;
+        width: 100vw;
+        height: 100px;
+    }
 
 main {
     display: inherit;
@@ -155,30 +202,17 @@ main {
 }
 
 footer {
-    display: inherit;
+    /* display: inherit; */
+    border: 1px solid green;
+    height: 7vh;
+    width: 100vw;
+    display: flex;
     justify-content: center;
-    border: 1px solid black;
-    height: 8vh;
-    width: 100%;
+    align-items: center;
 }
-
-#map {
-    display: inherit;
-    justify-content: center;
-    border: 1px solid black;
-    height: 80vh;
-    width: 100%;
-}
-
-
-
-
-/* #coffeeShopList {
-    display: inherit;
-    justify-content: center;
-    border: 1px solid black;
-    height: auto;
-    width: 100%;
-} */
->>>>>>> master
+    .aboutButton{
+        width: 12vw;
+        height: 4vh;
+        border: black 1px solid;
+    }
 
