@@ -16,7 +16,7 @@ header {
     display: inherit;
     /* justify-content: center; */
     border: solid #008000 2px;
-    height: 15vh;
+    height: auto;
     width: 100vw;
     /* margin: 10px; */
     flex-wrap: wrap;
@@ -40,8 +40,8 @@ p{
     }
     .weather{
         border: solid yellow 1px;
-        height: 14vh;
-        width: 8vw;
+        height: auto;
+        width: 100px;
     }
 .mainPage{
     display: flex;
