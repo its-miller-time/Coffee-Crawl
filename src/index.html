@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <title>Coffee Crawl</title>
 </head>
+
 <body>
-    <div id="map"></div>
-    <script src='index.js'></script>
+    <div class="weatherJacket">
+        <h6>WEATHER</h6>
+        <div class="weather hidden">
+        </div>
+    </div>
+    <header id="header">
+        <div class="topR">
+            <div class="logo">COFFEE<br>CRAWL</div>
+        </div>
+    </header>
+    <div class="mainPage">
+        <div id="map"></div>
+        <div class="resultsPage">
+            <ul class="results"></ul>
+        </div>
+        <!-- <div id="directions"></div> -->
+    </div>
+    <footer>
+        <div class="aboutButton">About</div>
+    </footer>
+
+    <script src="index.js"></script>
 </body>
+
 </html>
