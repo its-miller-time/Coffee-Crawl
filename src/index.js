@@ -74,8 +74,8 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.results').appendChild(el)
         locIndex++
       }
-      const header = document.querySelector('header')
-      document.getElementById('map').style.top = `${header.offsetHeight}px`
+      const footer = document.querySelector('footer');
+      document.querySelector('.results').appendChild(footer)
     }
 
 
@@ -175,6 +175,7 @@ window.addEventListener('DOMContentLoaded', () => {
       weatherJacket.onmouseover = function showWeather() {
         if (weatherDiv.style.display === "none"){
           weatherDiv.style.display = "block";
+          weatherDiv.style.right = '-10%';
         }
         else {weatherDiv.style.display = "none"}
       }

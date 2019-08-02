@@ -1,5 +1,6 @@
 :root {
     box-sizing: border-box;
+    overflow-x: none;
 }
 
 *,*::before, *::after{
@@ -10,21 +11,28 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+     
 }
 
 header {
     display: inherit;
-    /* justify-content: center; */
-    border: solid #008000 2px;
-    height: auto;
+    justify-content: center;
+    /* border: solid #008000 2px; */
+    height: 10%;
     width: 100vw;
     /* margin: 10px; */
     flex-wrap: wrap;
     position: fixed;
     z-index:2;
     top: 0;
-    background-color: palegreen;
+    background-color: #A88165;
 }
+
+header img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 p{
     font-size: 20px;
 }
@@ -48,13 +56,13 @@ p{
         height:auto;
         text-align: center;
         font-size: 4vw;
-        margin-top: -10%;
+        margin-top: -9%;
     }
     .weather p{
         transform: rotate(90deg);
         font-size: 4.5vw;
         padding: 0;
-        margin: 0;
+        margin: 2;
         /* text-align: center; */
         /* display: inline-block; */
     }
@@ -84,7 +92,7 @@ p{
     /* display:none; */
     /* flex-wrap: wrap; */
     border: solid red 1px;
-    height: vh;
+    /* height: vh; */
     width: 100vw;
 }    
     #map {
@@ -97,7 +105,7 @@ p{
         z-index: 0;
     }
     .resultsPage{
-        border: solid purple 2px;
+        /* border: solid purple 2px; */
         width: 100vw;
         height: auto;
         display: flex;
@@ -127,7 +135,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 0;
     position: relative;
 }
     .aboutButton{
