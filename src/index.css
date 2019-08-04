@@ -1,17 +1,37 @@
-:root {
-    box-sizing: border-box;
-    overflow-x: none;
+@media only screen and (max-width: 599px) {
+    .modalDialog > div {
+        width: 80%;
+        position: relative;
+        margin: 30% 10% 20% 10%;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background:rgba(0,0,0,1);
+        color: white;
+    }
 }
 
-*,*::before, *::after{
-    box-sizing:inherit;
+@media only screen and (min-width: 600px) {
+    .weather p {
+        font-size: 3vw;
+        color: orange;
+    }
+    .modalDialog > div {
+        width: 80%;
+        position: relative;
+        margin: 10%;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background:rgba(0,0,0,1);
+        color: white;
+    }
 }
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-     
+    margin: 0;
+    background-color: #d9d1c5;
 }
 
 header {
@@ -61,20 +81,17 @@ p{
 }
 
 .weather p{
-    font-size: 4.5vw;
-    margin: 0;
+    font-size: 3vw;
+    margin: 5vh;
     padding: 0;
 }
 .weather {
     margin-top: 2vh;
+    border-radius: 10%;
 }
 
 .mainPage{
     display: flex;
-    /* display:none; */
-    /* flex-wrap: wrap; */
-    border: solid red 1px;
-    /* height: vh; */
     width: 100vw;
 }    
 
@@ -82,10 +99,11 @@ p{
     display: inherit;
     justify-content: center;
     border: 1px solid purple;
-    height: 40vh;
+    height: 60vh;
     width: 100vw;
     position: fixed;
     z-index: 0;
+    /* border-radius: 50%; */
 }
 
 .resultsPage{
@@ -99,8 +117,8 @@ p{
     flex-wrap: wrap;
     /* z-index: 1; */
     position: relative;
-    top: 40vh;
-    background-color: white;
+    top: 60vh;
+    background-color: #f9f6f2;
 }
 
 li{
@@ -108,14 +126,11 @@ li{
 }
     
 #directions{
-    border: 6px green solid;
     width: 100vw;
     height: 100px;
 }
 
 footer {
-    /* display: inherit; */
-    border: 1px solid green;
     height: 7vh;
     width: 100vw;
     display: flex;
@@ -161,15 +176,15 @@ footer {
     pointer-events: auto;
 }
     
-.modalDialog > div {
+/* .modalDialog > div {
     width: 80%;
     position: relative;
-    margin: 30% 10% 20% 10%;
+    margin: 10%;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background:rgba(0,0,0,1);
     color: white;
-}
+} */
 
 .modalDialog h2 {
     text-align: center;
@@ -184,4 +199,22 @@ footer {
     text-decoration: none;
     font-weight: bold;
     box-shadow: 1px 1px 3px black;
+}
+
+.about-us {
+    text-decoration: none;
+    font-family: sans-serif;
+    color: #A88165;
+}
+
+.about-us:hover {
+    color: #5E4838;
+}
+
+@media only screen and (min-width: 900px) {
+
+}
+
+@media only screen and (min-width: 1200) {
+
 }

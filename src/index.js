@@ -143,7 +143,7 @@ window.addEventListener('DOMContentLoaded', () => {
       var map = L.mapquest.map('map', {
         center: [0, 0],
         layers: L.mapquest.tileLayer('map'),
-        zoom: 9
+        zoom: 1
       });
   
       var directionsLayer = L.mapquest.directionsLayer({
@@ -179,7 +179,7 @@ window.addEventListener('DOMContentLoaded', () => {
           // weatherJacket.style.height = "auto"
           weatherDiv.style.backgroundColor = "rgba(255,255,150,.6)"
           weatherHeader.style.display = "none"
-          weatherDiv.style.fontSize = "1vw"
+          weatherDiv.style.fontSize = "2%"
           
         }
         else {
