@@ -1,4 +1,9 @@
 L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
+
+//Breakpoints
+
+
+
 window.addEventListener('DOMContentLoaded', () => {
   let shopNum = prompt("How many shops would you like to visit?");
   
