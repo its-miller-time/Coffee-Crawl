@@ -1,5 +1,6 @@
 :root {
     box-sizing: border-box;
+    overflow-x: none;
 }
 
 *,*::before, *::after{
@@ -10,49 +11,177 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+     
 }
 
 header {
     display: inherit;
     justify-content: center;
-    border: 1px solid black;
-    height: 8vh;
-    width: 100%;
+    /* border: solid #008000 2px; */
+    height: 10%;
+    width: 100vw;
+    /* margin: 10px; */
+    flex-wrap: wrap;
+    position: fixed;
+    z-index:2;
+    top: 0;
+    background-color: #A88165;
 }
 
-main {
-    display: inherit;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid black;
-    height: 80vh;
-    width: 100%;
+header img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
-footer {
-    display: inherit;
-    justify-content: center;
-    border: 1px solid black;
-    height: 8vh;
-    width: 100%;
+p{
+    font-size: 20px;
 }
+
+.topR{
+    border: solid black 1px;
+    font-size: 4vw;
+    height: auto;
+    text-align: center;
+}
+
+.weatherJacket{
+    background-color:rgba(255,255,150,.6);
+    position: fixed;
+    top: 6vw;
+    right: 5%;
+    z-index: 5;
+    height:0%;
+    text-align: center;
+    font-size: 5vw;
+    margin-top: -10%;
+}
+
+.weatherHeader{
+    background-color:rgba(255,255,150,.6);
+}
+
+.weather p{
+    font-size: 4.5vw;
+    margin: 0;
+    padding: 0;
+}
+.weather {
+    margin-top: 2vh;
+}
+
+.mainPage{
+    display: flex;
+    /* display:none; */
+    /* flex-wrap: wrap; */
+    border: solid red 1px;
+    /* height: vh; */
+    width: 100vw;
+}    
 
 #map {
     display: inherit;
     justify-content: center;
-    border: 1px solid black;
-    height: 80vh;
-    width: 100%;
+    border: 1px solid purple;
+    height: 40vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 0;
 }
 
-
-
-
-/* #coffeeShopList {
-    display: inherit;
-    justify-content: center;
-    border: 1px solid black;
+.resultsPage{
+    /* border: solid purple 2px; */
+    width: 100vw;
     height: auto;
-    width: 100%;
-} */
+    display: flex;
+    /* display:none; */
+    justify-content: center;
+    padding: 10px;
+    flex-wrap: wrap;
+    /* z-index: 1; */
+    position: relative;
+    top: 40vh;
+    background-color: white;
+}
 
+li{
+    display: block;
+}
+    
+#directions{
+    border: 6px green solid;
+    width: 100vw;
+    height: 100px;
+}
+
+footer {
+    /* display: inherit; */
+    border: 1px solid green;
+    height: 7vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    position: relative;
+}
+.aboutButton{
+    width: 12vw;
+    height: 4vh;
+    border: black 1px solid;
+    text-align: center;
+}
+
+.loading-image {
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+    /* background: no-repeat; */
+    background-image: url('https://media.giphy.com/media/3oFyDpRagf96Uz9rzO/giphy.gif');
+}
+
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+    
+.modalDialog > div {
+    width: 80%;
+    position: relative;
+    margin: 30% 10% 20% 10%;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background:rgba(0,0,0,1);
+    color: white;
+}
+
+.modalDialog h2 {
+    text-align: center;
+}
+
+.close {
+    color: #FFFFFF;
+    line-height: 1rem;
+    position: absolute;
+    text-align: center;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 1px 1px 3px black;
+}
