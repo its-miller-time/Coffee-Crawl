@@ -20,7 +20,6 @@ window.addEventListener('DOMContentLoaded', () => {
         if (
             !unwanted.name.includes("Starbuck") &&
             unwanted.name !== "Allegro Coffee Company" &&
-            // unwanted.name !== "Starbucks Coffee" &&
             !unwanted.name.includes("Caribou Coffee") &&
             unwanted.name !== "The Coffee Bean" &&
             unwanted.name !== "Peet's Coffee" &&
@@ -31,24 +30,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    
-    // const weatherBox = document.getElementsByName("");
-    
-
-
-// function getRadius(){    
-//   const milesToMeters = (miles) => (miles * (1609.34))
-//   let radios = document.getElementsByName('radius');
-//       for (var i = 0, length = radios.length; i < length; i++){
-//         if (radios[i].checked){
-//           return(milesToMeters(radios[i].value))
-//         }
-//       break;
-//       };
-//     }
-
-
-    //
     function selectWeather(){
       imgSrc = ""
       switch(weatherCondition){
@@ -63,7 +44,6 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    //Creating and loading the list of venues the user will visit
     function getVenuesList(){
       const venuesDiv = document.querySelector(".venuesDiv");
       let locIndex = 0
@@ -104,6 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
       var directions = L.mapquest.directions();
       directions.setLayerOptions({
       startMarker: {
+        draggable: false,
         icon: 'flag',
         iconOptions: {
           size: 'sm',
@@ -113,6 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       },
       endMarker: {
+        draggable: false,
         icon: 'circle',
         iconOptions: {
           size: 'sm',
@@ -122,6 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       },
       routeRibbon: {
+        draggable: false,
         color: "#2aa6ce",
         opacity: 1.0,
         showTraffic: true
@@ -157,7 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
       });
       const hideLoadingGIF = document.querySelector(".loading-image");
       hideLoadingGIF.style.display = "none";
-      // narrativeControl.setDirectionsLayer(directionsLayer);
+      // narrativeControl.setDirectionsLayer(directionsLayer); // For directions that scroll
       // narrativeControl.addTo(map);
     }
 
@@ -176,9 +159,11 @@ window.addEventListener('DOMContentLoaded', () => {
       weatherJacket.addEventListener("click", function showWeather() {
         if (weatherDiv.style.display === "none"){
           weatherDiv.style.display = "block";
-          weatherDiv.style.backgroundColor = "rgba(195, 33, 72, 0.1)"
+          weatherDiv.style.backgroundColor = "rgba(0,0,0,.4)"
+          weatherDiv.style.color = "white";
           weatherHeader.style.display = "none"
           weatherDiv.style.fontSize = "2%"
+          weatherDiv.style.border = "5px solid black"
           
         }
         else {
@@ -188,10 +173,10 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       })
       weatherDiv.innerHTML=
-        `
-        <p>${currentConditions}: ${userTemp}° F</p>`
-        // <img src = ${weatherIconUrl}>`
-        
+      `
+        <p>${currentConditions}: ${userTemp}° F
+        <img src = ${weatherIconUrl}>
+        </p>`
         return jsonUserWeather;
     };
 
@@ -202,7 +187,7 @@ window.addEventListener('DOMContentLoaded', () => {
           const longitude = position.coords.longitude;
           const city = position;
           console.log(position)
-          var locationResult =  `${latitude},${longitude}`; //33.943516, -83.399084
+          var locationResult =  `${latitude},${longitude}`; //33.943516, -83.399084 // <-- Hardcoded lat/lng
           localStorage.setItem('userLocation',locationResult)
           const fourSquareURL = await fourSquareURLConstructor(locationResult);
           console.log(fourSquareURL);
