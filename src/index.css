@@ -1,4 +1,20 @@
 @media only screen and (max-width: 599px) {
+    .weather p{
+        font-size: 5vw;
+        color: orange;
+        margin-top: 0%;
+        }
+    .weatherHeader{
+        font-size: 5vw;
+        margin-top: 0%;
+        /* margin-top: -%; */
+    }
+    .weatherJacket{
+        top:0;
+        right:0;
+        margin-top: 1%;    
+        margin-right: 10%;
+    }
     .modalDialog > div {
         width: 80%;
         position: relative;
@@ -11,9 +27,21 @@
 }
 
 @media only screen and (min-width: 600px) {
-    .weather p {
+    .weather p{
         font-size: 3vw;
-        color: orange;
+        color: blue;
+        margin-top: 0%;
+        }
+    .weatherHeader{
+        font-size: 3vw;
+        margin-top: 0%;
+        padding-right: 10%;
+    }
+    .weatherJacket{
+        top:0;
+        right:10vw;
+        margin-top: 1%;    
+        margin-right: 5%
     }
     .modalDialog > div {
         width: 80%;
@@ -23,6 +51,25 @@
         border-radius: 10px;
         background:rgba(0,0,0,1);
         color: white;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .weather p{
+        font-size: 2vw;
+        color: green;
+        margin: 0;
+        }
+    .weatherHeader{
+        font-size: 2vw;
+        margin-top: 0%;
+        margin-right: 10%;
+        }
+    .weatherJacket{
+        top:0;
+        right: 0;
+        margin-top: 1%;    
+        margin-right: 3%;
     }
 }
 
@@ -45,7 +92,7 @@ header {
     position: fixed;
     z-index:2;
     top: 0;
-    background-color: #A88165;
+    background-color: steelblue;
 }
 
 header img {
@@ -53,7 +100,7 @@ header img {
     max-height: 100%;
 }
 
-p{
+p {
     font-size: 20px;
 }
 
@@ -65,29 +112,30 @@ p{
 }
 
 .weatherJacket{
-    background-color:rgba(255,255,150,.6);
+    /* background-color:rgba(255,255,150,.6); */
     position: fixed;
-    top: 6vw;
-    right: 5%;
+    top: 1;
+    right: 0;
     z-index: 5;
     height:0%;
     text-align: center;
-    font-size: 5vw;
-    margin-top: -10%;
+    margin-right: 10%;
+    /* font-size: 5vw; */
+    /* margin-top: -10%; */
 }
 
 .weatherHeader{
-    background-color:rgba(255,255,150,.6);
+    background-color:gray;
+    opacity: 0.8;
+    border-radius: 10%;
+    padding: 5px;
+    margin: 5px;
 }
 
-.weather p{
-    font-size: 3vw;
-    margin: 5vh;
+.weather p {
+    /* font-size: 4.5vw; */
+    /* margin: 5vh; */
     padding: 0;
-}
-.weather {
-    margin-top: 2vh;
-    border-radius: 10%;
 }
 
 .mainPage{
@@ -175,16 +223,6 @@ footer {
     opacity:1;
     pointer-events: auto;
 }
-    
-/* .modalDialog > div {
-    width: 80%;
-    position: relative;
-    margin: 10%;
-    padding: 5px 20px 13px 20px;
-    border-radius: 10px;
-    background:rgba(0,0,0,1);
-    color: white;
-} */
 
 .modalDialog h2 {
     text-align: center;
@@ -211,10 +249,12 @@ footer {
     color: #5E4838;
 }
 
-@media only screen and (min-width: 900px) {
+
+
+/* @media only screen and (min-width: 900px) {
 
 }
 
 @media only screen and (min-width: 1200) {
 
-}
+} */

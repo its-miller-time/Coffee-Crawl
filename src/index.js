@@ -176,8 +176,7 @@ window.addEventListener('DOMContentLoaded', () => {
       weatherJacket.addEventListener("click", function showWeather() {
         if (weatherDiv.style.display === "none"){
           weatherDiv.style.display = "block";
-          // weatherJacket.style.height = "auto"
-          weatherDiv.style.backgroundColor = "rgba(255,255,150,.6)"
+          weatherDiv.style.backgroundColor = "rgba(195, 33, 72, 0.1)"
           weatherHeader.style.display = "none"
           weatherDiv.style.fontSize = "2%"
           
@@ -190,7 +189,7 @@ window.addEventListener('DOMContentLoaded', () => {
       })
       weatherDiv.innerHTML=
         `
-        <p>${currentConditions}<br>${userTemp}</p>`
+        <p>${currentConditions}: ${userTemp}° F</p>`
         // <img src = ${weatherIconUrl}>`
         
         return jsonUserWeather;
