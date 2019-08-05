@@ -159,7 +159,7 @@ window.addEventListener('DOMContentLoaded', () => {
       weatherJacket.addEventListener("click", function showWeather() {
         if (weatherDiv.style.display === "none"){
           weatherDiv.style.display = "block";
-          weatherDiv.style.backgroundColor = "rgba(0,0,0,.4)"
+          weatherDiv.style.backgroundColor = "rgba(0,0,0,.8)"
           weatherDiv.style.color = "white";
           weatherHeader.style.display = "none"
           weatherDiv.style.fontSize = "2%"
