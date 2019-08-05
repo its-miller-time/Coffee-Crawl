@@ -1,4 +1,4 @@
-L.mapquest.key = 'g2egZCu69Ravnu4jtBeImYEArbV4GUZm';
+L.mapquest.key = 'J3sOSVAUrBtR5VQKHikNZ9KpzPVUAJZG';
 window.addEventListener('DOMContentLoaded', () => {
   let shopNum = prompt("How many shops would you like to visit?");
   
@@ -64,7 +64,6 @@ window.addEventListener('DOMContentLoaded', () => {
       const clientSecret = "CGG1LF2IHSYQFVBMM4QXT4JREE51LXXVTXX4POHV2WLCQLOD";
       const version = "20180323";
       const latLng = locationResult;
-      console.log(latLng);
       const intent = "browse";
       const searchRadius = "10000";
       const queryTopic = "coffee";
@@ -74,7 +73,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function waypointsLocation() {
         const coffeePlaces = JSON.parse(localStorage.getItem("venues"));
-        console.log(coffeePlaces);
         return coffeePlaces
             .map(venue => (address = `${venue.address},${venue.city},${venue.state} ${venue.postalcode}`))
             .slice(0, shopNum);
@@ -149,7 +147,6 @@ window.addEventListener('DOMContentLoaded', () => {
       userWeather = await fetch(atlWeatherAPI);
       jsonUserWeather = await userWeather.json();
       let weatherIconUrl = `http://openweathermap.org/img/wn/${jsonUserWeather.weather[0].icon}@2x.png`
-      console.log(weatherIconUrl)
       const currentConditions = jsonUserWeather.weather[0].main;
       const userTemp = jsonUserWeather.main.temp;
       const weatherDiv = document.querySelector(".weather");
@@ -186,11 +183,10 @@ window.addEventListener('DOMContentLoaded', () => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
           const city = position;
-          console.log(position)
-          var locationResult =  `${latitude},${longitude}`; //33.943516, -83.399084 // <-- Hardcoded lat/lng
+          var locationResult =  `${latitude},${longitude}`; 
+          //47.6062, -122.3321 // <-- Hardcoded lat/lng
           localStorage.setItem('userLocation',locationResult)
           const fourSquareURL = await fourSquareURLConstructor(locationResult);
-          console.log(fourSquareURL);
           const fourSquare = await fetch(fourSquareURL);
           const jsonFourSquare = await fourSquare.json();
           const updatedFourSquare = jsonFourSquare.response.venues

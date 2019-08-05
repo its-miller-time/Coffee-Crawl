@@ -1,4 +1,16 @@
+:root {
+    box-sizing: border-box;
+    overflow-x: none;
+}
+
+*,*::before, *::after{
+    box-sizing:inherit;
+}
+
 @media only screen and (max-width: 599px) {
+    .weather img {
+        transform: scale(1.25);
+    }
     .weather p{
         font-size: 5vw;
         margin-top: 0%;
@@ -161,6 +173,7 @@ p {
     position: relative;
     top: 60vh;
     background-color: #f9f6f2;
+    overflow: hidden;
 }
 
 li{
