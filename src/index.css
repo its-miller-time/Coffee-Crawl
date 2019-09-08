@@ -8,25 +8,7 @@
 }
 
 @media only screen and (max-width: 599px) {
-    .weather img {
-        transform: scale(1.25);
-    }
-    .weather p{
-        font-size: 5vw;
-        margin-top: 0%;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-    .weatherHeader{
-        font-size: 5vw;
-        margin-top: 0%;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-    .weatherJacket{
-        top:0;
-        right:0;
-        margin-top: 1%;    
-        margin-right: 10%;
-    }
+
     .modalDialog > div {
         width: 80%;
         position: relative;
@@ -39,23 +21,6 @@
 }
 
 @media only screen and (min-width: 600px) {
-    .weather p{
-        font-size: 3vw;
-        margin-top: 0%;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-    .weatherHeader{
-        font-size: 3vw;
-        margin-top: 0%;
-        padding-right: 10%;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-    .weatherJacket{
-        top:0;
-        right:10vw;
-        margin-top: 1%;    
-        margin-right: 5%
-    }
     .modalDialog > div {
         width: 80%;
         position: relative;
@@ -67,41 +32,35 @@
     }
 }
 
-@media only screen and (min-width: 900px) {
-    .weather p{
-        font-size: 2vw;
-        margin: 0;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        margin: 0 0 10px 10px;
-        }
-    .weatherHeader{
-        font-size: 2vw;
-        margin-top: 0%;
-        margin-right: 10%;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-    .weatherJacket{
-        top:0;
-        right: 0;
-        margin-top: 1%;    
-        margin-right: 3%;
-    }
-    .weather img {
-        transform: scale(1.25);
-    }
+/* @media only screen and (min-width: 900px) {
+
+} */
+
+i {
+    /* font-family: 'Open Sans', sans-serif !important; */
+    font-size: 2em;
+    color: black;
+    padding-right: 2vw;
 }
+#github {
+    list-style: none;
+}
+a:visited { text-decoration: none; }
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0;
-    background-color: #d9d1c5;
+    background-color: lightgrey;
+    font-family: 'Open Sans', sans-serif;
 }
 
 header {
     display: inherit;
-    justify-content: center;
+    justify-content: space-between;
+    padding-left: 1em;
+    padding-bottom: 2em;
     height: 10%;
     width: 100vw;
     flex-wrap: wrap;
@@ -109,23 +68,25 @@ header {
     z-index:2;
     top: 0;
     background-color: steelblue;
+    font-family: 'Anton', sans-serif;
+
 }
 
-header img {
-    max-width: 100%;
-    max-height: 100%;
+h1 {
+    justify-content: flex-start;
+    margin-top: 10px;
 }
 
 p {
     font-size: 20px;
 }
-
+/* 
 .topR{
     border: solid black 1px;
     font-size: 4vw;
     height: auto;
     text-align: center;
-}
+} */
 
 .weatherJacket{
     position: fixed;
@@ -137,24 +98,13 @@ p {
     margin-right: 10%;
 }
 
-.weatherHeader{
-    background-color:gray;
-    opacity: 0.8;
-    border-radius: 10%;
-    padding: 5px;
-    margin: 5px;
-}
-
-.weather p {
-    padding: 0;
-}
 
 .mainPage{
     display: flex;
     width: 100vw;
 }    
 
-#map {
+.map {
     display: inherit;
     justify-content: center;
     height: 60vh;
@@ -176,8 +126,12 @@ p {
     overflow: hidden;
 }
 
-li{
-    display: block;
+ul{
+    list-style: none;
+}
+.directions{
+    /* list-style:none;  */
+    padding-left: 2%; 
 }
     
 #directions{
@@ -209,7 +163,7 @@ footer {
     background-color: white;
     background-size: cover;
     background-position: center;
-    background-image: url('https://media.giphy.com/media/3oFyDpRagf96Uz9rzO/giphy.gif');
+    /* background-image: url('https://media.giphy.com/media/3oFyDpRagf96Uz9rzO/giphy.gif'); */
 }
 
 .modalDialog {
@@ -248,9 +202,90 @@ footer {
 .about-us {
     text-decoration: none;
     font-family: sans-serif;
-    color: #A88165;
+    color: black;
 }
 
 .about-us:hover {
-    color: #5E4838;
+    background-color: steelblue;
 }
+
+/* .hidden .mainPage{
+    height: 1em;
+    width: 1em;
+    border-radius: 2px;
+    border-color: red;
+} */
+
+#input{
+    /* margin-top: 50%; */
+    height:70%;
+    /* border: black 1px solid; */
+}
+#button{
+    /* margin-top: 0%; */
+    height: 70%;
+    /* border: black 1px solid; */
+}
+
+
+.loaded {
+    display: none;
+}
+
+
+.mainPage.hidden{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-end;
+    width: 100vw;
+    height: 90vh;
+    /* border-style: solid;
+    border-color: green;
+    border-width: 1px; */
+}
+
+.container{
+    /* display: flex; */
+    height: 80%;
+    width: 50%;
+    /* border-style: solid;
+    border-color: blue;
+    border-width: 1px; */
+}
+
+.container.left{
+    display: flex;
+    justify-content: right;
+    padding: 2em;
+    /* border: 1px solid orange; */
+}
+    .instructions{
+        /* border: 1px solid red; */
+        justify-content: flex-end;
+        text-align: right;
+        line-height: 2em;
+    }
+
+.container.right{
+    padding: 2em;
+    display: flex;
+    align-items: left ;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* border: 1px solid orange; */
+}
+    .directions{
+        /* border: solid 1px purple; */
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+        .inputdiv{
+            height: 10%;
+            /* border: solid 1px purple; */
+            /* margin-top: -40%; */
+            margin-left: 2%;
+            /* display: flex;
+            flex-direction: column; */
+        }

@@ -9,33 +9,68 @@
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="icon" href="coffee-icon.png">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+
 
     <title>Coffee Crawl</title>
 </head>
 
 <body>
-    <div class="loading-image"></div>
-    <div class="weatherJacket">
-        <h6 class="weatherHeader">WEATHER</h6>
-        <div class="weather hidden"></div>
-    </div>
-    <header id="header">
-        <img src="coffee_crawl_v2.png" alt="coffee crawl">
+    <!-- <header class="hidden"></header> -->
+    <header id="header loaded">
+        <h1>Coffee Crawl</h1>
+        <ul class="tops">
+                <li id="github"><a href="https://github.com/ben-davenport"><i class="devicon-github-plain"></i></a></li>
+        </ul>
+    
     </header>
-    <div class="mainPage">
-        <div id="map"></div>
-        <div class="resultsPage">
-            <ul class="results"></ul>
+
+    <div class="mainPage hidden">
+        <div class="container left hidden">
+            <div>
+                <h2 class="hidden instructions">Coffee Crawls are the perfect way to explore 
+                    a new city or find new gems in a city you love!
+                    </h2>
+                <p class="hidden instructions">
+                    With Coffee Crawls you can easily set the number of shops you and your friends
+                    want to visit throughout the day. Then, we generate a simple map for you that will take
+                    you all around the city and automatically routes you back home.
+
+                    Support your local roasteries, coffe shops, and always remember to tip your baristas!
+                    </p>
+            </div>
+        </div>
+        <div class="container right hidden">
+                <h1>How to Crawl</h1>
+                <ul class="directions hidden">
+                        <h2><li>Decide how many cafes do you want to visit.</h2></li>
+                        <h2><li>Click that Button Below.</h2></li>
+                        <h2><li>Drink too much coffee.</h2></li>
+                    </ul>
+            <div class="inputdiv">
+                <input id="input" type="text" maxlength="2" placeholder="How many Cafes?"></input>
+                <button id="button" class="hidden">CRAWL</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mainPage loaded">
+        <div id="map" class="map loaded"></div>
+        <div class="resultsPage loaded">
+            <ul class="results loaded"></ul>
         </div>
     </div>
     <footer id="footer">
         <a class="about-us" href="#openModal">About</a>
         <div id="openModal" class="modalDialog">
             <div>
-                <a href="#close" title="Close" class="close">X</a>
+                <a href="#close" title="Close" class="close loaded">X</a>
                 <h2>About Us</h2>
-                <p>Inspired by a love for coffee and an idea to make it and advnture with friends, Coffee Crawl takes
-                    you on a journey of the best local, artisian coffee shops around you!</p>
+                <p>Inspired by a love for coffee and an idea to make it and adventure with friends, Coffee Crawl takes
+                    you on a journey of the best local, artisan coffee shops around you!</p>
                 <p>Created by: Ian, Daniel, and Ben.</p>
             </div>
         </div>
