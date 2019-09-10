@@ -215,11 +215,16 @@ window.addEventListener('DOMContentLoaded', () => {
           getVenuesList(shopNum)
       })
   }
-    document.body.onclick = (function (event){
-      if(!$(event.target).closest('#openModal').length && !$(event.target).is('#openModal')) {
-        (".modalDialog").hide();
-        }     
+    // document.getElementById('modal-button').onclick = (function (event){
+    //   const modal = document.querySelector('#openModal');
+    //   modal.style.display = 'block';
+    // });
+    document.getElementById('modal-button').addEventListener('click', 
+      ()=>{
+        console.log('CLICK')
+        return document.getElementById("openModal").style.display = 'flex';
       });
+
     document.getElementById('button').onclick = function() {
       const shopNum = document.querySelector('#input').value;
       fetchMyData(shopNum);
