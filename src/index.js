@@ -221,9 +221,29 @@ window.addEventListener('DOMContentLoaded', () => {
     // });
     document.getElementById('modal-button').addEventListener('click', 
       ()=>{
-        console.log('CLICK')
-        return document.getElementById("openModal").style.display = 'flex';
+        console.log('button click')
+        // console.log('CLICK')
+        return document.getElementById("openModal").classList.remove('hide-modal');
       });
+
+      document.body.addEventListener('click', (e)=> {
+        console.log('body click')
+        if(e.target.id !== 'modal-button') document.getElementById('openModal').classList.add('hide-modal');
+        // console.log('click')
+      });
+
+
+
+  
+    // document.body.addEventListener('click', (e)=> {
+    //   if(e.target.id !== 'modal-button') document.getElementById('openModal').classList.add('hide-modal');
+    // });
+
+
+
+
+
+
 
     document.getElementById('button').onclick = function() {
       const shopNum = document.querySelector('#input').value;

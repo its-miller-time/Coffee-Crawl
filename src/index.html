@@ -42,6 +42,7 @@
                     </p>
             </div>
         </div>
+        
         <div class="container right hidden">
                 <h1>How to Crawl</h1>
                 <ul class="directions hidden">
@@ -63,27 +64,28 @@
             <ul class="results loaded"></ul>
         </div>
     </div>
+
     <footer id="footer">
         <!-- <a class="about-us" href="#openModal">About</a> -->
         <button class="about-us" type="button" id="modal-button">About</button>
-        <div id="openModal" class="modalDialog">
-            <!-- <div id="modalTwo"> -->
+        <div id="openModal" class="modalDialog hide-modal">
+            <div id="modalTwo">
                 <!-- <a href="#close" title="Close" class="close loaded">X</a> -->
                 <h2>About Us</h2>
                 <p>Inspired by a love for coffee and an idea to make it and adventure with friends, Coffee Crawl takes
                     you on a journey of the best local, artisan coffee shops around you!</p>
                 <p>Created by: Ian, Daniel, and Ben.</p>
-            <!-- </div> -->
+            </div>
         </div>
     </footer>
 
     <script src="index.js" ></script>
-    <script>
+    <!-- <script>
         
         const modal = document.querySelector('#openModal')
         console.log(modal)
         document.body.addEventListener('click', ()=>(document.body.href="/")) 
-    </script>
+    </script> -->
 </body>
 
 </html>
