@@ -1,218 +1,204 @@
 :root {
     box-sizing: border-box;
+    overflow-x: none;
 }
 
 *,*::before, *::after{
     box-sizing:inherit;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+body{
+    background-color: #008ECC;
+    margin: .3rem;
+    color: rgba(236, 236, 236, 0.89);
 }
 
-header {
-    display: inherit;
-    position: fixed;
-    z-index:2;
-    top: 0;
-    background-color: palegreen;
+li{
+    list-style: none;
 }
-p{
-    font-size: 20px;
-}
-    .topR{
-        border: solid black 1px;
-        font-size: 4vw;
-        height: auto;
-        text-align: center;
-    }
-    /* .weather h6{
-        font-size: 2vw;
-    } */
-    .weatherJacket{
-        background-color:rgba(255,255,150,.6);
-        position: fixed;
-        top: 10vw;
-        right: 0;
-        z-index: 5;
-        transform: rotate(-90deg);
-        /* transform: translate(50%); */
-        height:auto;
-        text-align: center;
-        font-size: 4vw;
-        margin-top: -10%;
-    }
-    .weather p{
-        transform: rotate(90deg);
-        font-size: 4.5vw;
-        padding: 0;
-        margin: 0;
-        /* text-align: center; */
-        /* display: inline-block; */
-    }
-        /* border: solid yellow 1px; */
-        /* height: auto;
-        width: auto;
-        position: fixed;
-        right: 5px;
-        top: 0;
-        z-index: 5;
-        background-color: yellow;
-        transform: rotate(90deg) translate(50%);
-        transform: translate(90%)
-    }
-    .weather:hover{
-        right: 0;
-        transform: translate(0%);
-    }
-    h6:hover{
-        font-display: none;
-    }
-    .weather img, .weather p{
-        /* transform: rotate(-90deg) */
-    */
-.mainPage{
+
+header{
+    background-color: #008ECC;
+    color: rgba(236, 236, 236, 0.89);
     display: flex;
-    /* display:none; */
-    /* flex-wrap: wrap; */
-    border: solid red 1px;
-    height: vh;
-    width: 100vw;
-}    
-    #map {
-        display: inherit;
-        justify-content: center;
-        border: 1px solid purple;
-        height: 40vh;
-        width: 100vw;
-        position: fixed;
-        z-index: 0;
-    }
-    .resultsPage{
-        border: solid purple 2px;
-        width: 100vw;
-        height: auto;
-        display: flex;
-        /* display:none; */
-        justify-content: center;
-        padding: 10px;
-        flex-wrap: wrap;
-        /* z-index: 1; */
-        position: relative;
-        top: 40vh;
-        background-color: white;
-    }
-        li{
-            display: block;
-        }
-    
-    #directions{
-        border: 6px green solid;
-        width: 100vw;
-        height: 100px;
-    }
-footer {
-    /* display: inherit; */
-    border: 1px solid green;
-    height: 7vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    position: relative;
-}
-    .aboutButton{
-        width: 12vw;
-        height: 4vh;
-        border: black 1px solid;
-        text-align: center;
-    }
-    justify-content: center;
-    border: 1px solid black;
-    height: 8vh;
-    width: 100%;
-}
-p{
-    text-size: 20px;
-}
-    .topR{
-        border: solid black 1px;
-        font-size: 20px;
-        height: 14vh;
-        text-align: center;
-    }
-    .radios{
-        border: solid orangered 1px;
-        height: 14vh;
-        width: 70vw;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .weather{
-        border: solid yellow 1px;
-        height: auto;
-        width: 100px;
-    }
-.mainPage{
-    display: flex;
-    /* display:none; */
     flex-wrap: wrap;
-    border: solid red 1px;
-    height: vh;
-    width: 100vw;
-}    
-    #map {
-        display: inherit;
-        justify-content: center;
-        border: 1px solid purple;
-        height: 40vh;
-        width: 100vw;
-    }
-    .resultsPage{
-        border: solid purple 2px;
-        width: 100vw;
-        height: auto;
-        display: flex;
-        /* display:none; */
-        justify-content: center;
-        padding: 10px;
-        flex-wrap: wrap;
-    }
-        li{
-            display: block;
-        }
-    
-    #directions{
-        border: 6px green solid;
-        width: 100vw;
-        height: 100px;
+    justify-content: space-between;
+    border-bottom: 1.5px solid #D3D3D3;
+
+}
+header ul{
+    display: flex;
+    /* border: 1px solid black; */
+}
+header li{
+    font-size: 2rem;
+    margin-right: .4em;
+    color: black;
+}
+
+.directionsJacket ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    padding-left: 2%;
     }
 
-main {
-    display: inherit;
-    flex-direction: column;
+#map{
+    height: 100vh;
+    width: 100vw;
+    border: 1px solid red;
+    /* display: none; */
+}
+
+#dPlace{
+    display: none;
+}
+
+#phoneP{
+    /* border: 1px black solid; */
+    line-height: 2em;
+    text-align: center;
+}
+
+.inputJacket{
+    display: flex;
     justify-content: center;
-    border: 1px solid black;
-    height: 80vh;
+    width: 100%;
+    height: 3em;
+    /* border: 1px solid black; */
+}
+
+#button{
+    height: 100%;
+    width: 20%;
+}
+#input{
+    width: 50%;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: green; */
+}
+#about-button{
+    display: none;
+    width: 20%;
+}
+.hide-modal{
+    display:none;
+}
+.modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* background: rgba(0,0,0,0.8); */
+    z-index: 999;
+    /* opacity:0; */
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+    /* display: flex; */
+    justify-content: center;
+}
+
+#modalJacket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    /* border: 10px solid red; */
+    margin-top: 10%;
+    background: rgba(0,0,0,.9);
+    /* width: 90%; */
+}
+.modalDialog h2 {
+    text-align: center;
+}
+.about-us {
+    text-decoration: none;
+    font-family: sans-serif;
+    color: black;
+}
+.mapPage{
+    flex-wrap: wrap;
+}
+#map{
+    display: none;
+    /* height: 50vh; */
     width: 100%;
 }
 
-footer {
-    /* display: inherit; */
-    border: 1px solid green;
-    height: 7vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-    .aboutButton{
-        width: 12vw;
-        height: 4vh;
-        border: black 1px solid;
+@media only screen and (min-width: 600px) {
+    .mainPage{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #topL{
+        width: 50%;
+        /* border: 1px solid orange; */
+    }
+    .mainPage h2{
+        text-align: left;
+        width: 100%;
+        /* border: 1px black solid; */
+    }
+    .directionsJacket{
+        /* border: 1px red solid; */
+        display: flex;
+        padding-left: 3%;
+        /* align-items: flex-end; */
+        text-align: left;
+        width: 50%;
+    }
+    .directionsJacket ul{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        margin-top: -.5%;
+        padding: 0;
+        }
+    .directionsJacket h2 li{
+        text-align: left;
+        list-style-type: none;
+    }
+    .inputJacket{
+        /* border: 1px solid purple; */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        margin-top: 2%;
+
+    }
+    #input{
+        border: 1px solid grey;
+        font-size: .75em;
+        width: 30%;
+    }
+    #button{
+        border: 1px solid grey;
+        color: white;
+        background-color: rgb(16,52,166);
+        width: 5%;
+    }
+    #dPlace{
+        display: flex;
+        /* border: 1px solid black; */
+        height: 55%;
+        line-height: 2em;
+    }
+    #phoneP{
+        display: none;
     }
 
+    #map{
+        display: none;
+        /* height: 50vh; */
+        width: 60%;
+    }
+}
