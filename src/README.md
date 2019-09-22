@@ -29,3 +29,8 @@ The location is fed into making a FourSquare API call with a parameter specifyin
 The list of returned cafes is passed into the Mapquest SDK to return a map with all the locations marked. The current location of the user is used as the starting and ending point in the directions to ensure that the user has an efficient route to get back home (or work, or wherever they might have been) after they caffeine-up. 
 
 This map and list are then loaded onto the DOM and displayed on the page for folks coffee pleasures.
+
+## Challenges
+Some of the biggest challenges with this were getting the SDK to perform as intended and getting the formatting to cohere once the map and directions loaded.
+1. The mapquest SDK required a number of asynchronous functions to be run before it could be run, and that took a few tries to ensure everything was fetched and then cascaded in the proper order. For a while, we could get the map to load but not the directions. And there are still lingering issues that can't be easily solved within the SDK (for example, if you move directions within the map they're at risk of disappearing entirely!).
+2. Once the map and directions were actually loaded, they would often interfere with the other DOM objects that we had created including the header, footer, and 'About' modal. After all too much formatting, the simplest option was too restart with our HTML, and begin with mobile formatting. This led to the much cleaner, simpler HTML/CSS design and layout that you see today.  
