@@ -35,24 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    //All of the lil gifs for weather
-    // function selectWeather(){
-    //   imgSrc = ""
-    //   switch(weatherCondition){
-    //     case'cloudy':
-    //       imgSrc = "../assets/cloudy.gif";
-    //     case'sunny':
-    //       imgSrc = "../assets/sunny.gif";
-    //     case'windy':
-    //       imgSrc = "../assets/windy.gif";
-    //     case'rainh':
-    //       imgSrc = "../assets/rainy.gif";
-    //   }
-    // };
-
-    //
     function getVenuesList(shopNum){
-      // await shopNum;
       const venuesDiv = document.querySelector(".venuesDiv");
       let locIndex = 0
       const venues = JSON.parse(localStorage.getItem("venues"));
@@ -80,7 +63,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
     function waypointsLocation(shopNum) {
-        // await shopNum;
         const coffeePlaces = JSON.parse(localStorage.getItem("venues"));
         return coffeePlaces
             .map(venue => (address = `${venue.address},${venue.city},${venue.state} ${venue.postalcode}`))
@@ -146,51 +128,13 @@ window.addEventListener('DOMContentLoaded', () => {
         compactResults: true,
         interactive: true,
       });
-      // const hideLoadingGIF = document.querySelector(".loading-image");
-      // hideLoadingGIF.style.display = "none";
-      // narrativeControl.setDirectionsLayer(directionsLayer); // For directions that scroll
-      // narrativeControl.addTo(map);
+
     }
     catch(err){
       console.log(err);
     }
   }
 
-    // async function weather(latitude,longitude){
-    //   let atlWeatherAPI = `http://my-little-cors-proxy.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=a373f4ca9633876c822db955b3ed301e`
-    //   userWeather = await fetch(atlWeatherAPI);
-    //   jsonUserWeather = await userWeather.json();
-    //   let weatherIconUrl = `http://openweathermap.org/img/wn/${jsonUserWeather.weather[0].icon}@2x.png`
-    //   const currentConditions = jsonUserWeather.weather[0].main;
-    //   const userTemp = jsonUserWeather.main.temp;
-    //   const weatherDiv = document.querySelector(".weather");
-    //   weatherDiv.style.display = "none";
-    //   const weatherJacket = document.querySelector(".weatherJacket")
-    //   const weatherHeader = document.querySelector(".weatherHeader")
-    //   weatherJacket.addEventListener("click", function showWeather() {
-    //     if (weatherDiv.style.display === "none"){
-    //       weatherDiv.style.display = "block";
-    //       weatherDiv.style.backgroundColor = "rgba(0,0,0,.8)"
-    //       weatherDiv.style.color = "white";
-    //       weatherHeader.style.display = "none"
-    //       weatherDiv.style.fontSize = "2%"
-    //       weatherDiv.style.border = "5px solid black"
-          
-    //     }
-    //     else {
-    //       weatherDiv.style.display = "none";
-    //       weatherJacket.style.height = "0%";
-    //       weatherHeader.style.display= "block"
-    //     }
-    //   })
-    //   weatherDiv.innerHTML=
-    //   `
-    //     <p>${currentConditions}: ${userTemp}° F
-    //     <img src = ${weatherIconUrl}>
-    //     </p>`
-    //     return jsonUserWeather;
-    // };
-    
     //Master Function
     async function fetchMyData(shopNum) {
       // const shopNum = document.querySelector('#input').value
@@ -201,7 +145,6 @@ window.addEventListener('DOMContentLoaded', () => {
           var locationResult =  `${latitude},${longitude}`; 
           //47.6062, -122.3321 // <-- Hardcoded lat/lng
           localStorage.setItem('userLocation',locationResult)
-          // Promise.all([fourSquareURL, fourSquare, weather(latitude, longitude)])          
           const fourSquareURL = await fourSquareURLConstructor(locationResult);
           const fourSquare = await fetch(fourSquareURL);
           const jsonFourSquare = await fourSquare.json();
@@ -211,7 +154,6 @@ window.addEventListener('DOMContentLoaded', () => {
           const stringifiedFourSquareVenues = JSON.stringify(updatedFourSquare);
           localStorage.setItem("venues", stringifiedFourSquareVenues);
           addDirections(locationResult, shopNum)
-          // await weather(latitude,longitude)
           getVenuesList(shopNum)
       })
   }
@@ -219,7 +161,9 @@ window.addEventListener('DOMContentLoaded', () => {
     //   const modal = document.querySelector('#openModal');
     //   modal.style.display = 'block';
     // });
-    document.getElementById('modal-button').addEventListener('click', 
+
+    //THIS IS THE ONE THAT WORKS
+    document.getElementById('about-button').addEventListener('click', 
       ()=>{
         console.log('button click')
         // console.log('CLICK')
@@ -228,35 +172,29 @@ window.addEventListener('DOMContentLoaded', () => {
 
       document.body.addEventListener('click', (e)=> {
         console.log('body click')
-        if(e.target.id !== 'modal-button') document.getElementById('openModal').classList.add('hide-modal');
+        if(e.target.id !== 'about-button') document.getElementById('openModal').classList.add('hide-modal');
         // console.log('click')
       });
-
-
-
-  
-    // document.body.addEventListener('click', (e)=> {
-    //   if(e.target.id !== 'modal-button') document.getElementById('openModal').classList.add('hide-modal');
-    // });
-
-
-
-
-
 
 
     document.getElementById('button').onclick = function() {
       const shopNum = document.querySelector('#input').value;
       fetchMyData(shopNum);
 
-      const hidden = document.getElementsByClassName('hidden')
+      const hidden = document.getElementsByClassName('front')
       for(i=0; i<hidden.length; i++){
         hidden[i].style.display = 'none';
         }
-      const loaded = document.getElementsByClassName('loaded')
+        
+      const loaded = document.getElementsByClassName('mapPage')
       for (i=0; i< loaded.length; i++){
-        loaded[i].style.display = 'block';
+        loaded[i].style.display = 'flex';
       }
+      const wholeMap = document.getElementById('map');
+      wholeMap.style.display = 'block';
+
+      const aboot = document.getElementById('about-button');
+      aboot.style.display = 'block';
   }
 
   });
